@@ -22,7 +22,7 @@ public class Bible {
 
 	float rInner = 400;
 	float rOuter = 420;
-	float arcThickness = 130;
+	float arcThickness = 90;
 
 	int cx, cy;
 
@@ -39,6 +39,9 @@ public class Bible {
 		cx = papplet.width / 2;
 		cy = papplet.height / 2;
 
+		rInner = Math.min(papplet.width, papplet.height) * 0.8f;
+		rOuter = rInner + arcThickness;
+		
 		setupBookList();
 	}
 
@@ -129,17 +132,6 @@ public class Bible {
 			finishAngleR = lastStartAngleR + toRad(chpAngleD * books.get(i).numChapters);
 			// debugPrint("finishAngleR set to " + toDeg(finishAngleR));
 
-			// books.get(i).draw(papplet);
-
-			// Trying with "point"
-//			startPt = getPoint(rInner, lastStartAngleR);
-//			endPt = getPoint(rOuter, lastStartAngleR);
-//			drawLine(startPt, endPt);
-//
-//			startPt = getPoint(rInner, finishAngleR);
-//			endPt = getPoint(rOuter, finishAngleR);
-//			drawLine(startPt, endPt);
-
 			// Trying with individual X/Y
 			startX = getXf(rInner, lastStartAngleR);
 			startY = getYf(rInner, lastStartAngleR);
@@ -158,18 +150,6 @@ public class Bible {
 			papplet.arc(cx, cy, rOuter, rOuter, (float) (lastStartAngleR), (float) (finishAngleR));
 
 //			debugPrintln("  startpt: " + startPt.x + "," + startPt.y + "; endPt: " + endPt.x + "," + endPt.y);
-			// line(getX(rInner, finishAngleR), getY(rInner, finishAngleR),
-			// getX(rOuter, finishAngleR),
-			// getY(rOuter, finishAngleR));
-
-			// chpCount += books.get(i).numChapters;
-			// books.get(i).R = (int) (Math.random() * 255);
-			// books.get(i).G = (int) (Math.random() * 255);
-			// books.get(i).B = (int) (Math.random() * 255);
-
-			// fill(books.books.get(i).R, books.books.get(i).G,
-			// books.books.get(i).B);
-			// papplet.strokeWeight(1);
 			debugPrint("; chpCount: " + books.get(i).numChapters + "; old lastStartAngle = " + toDeg(lastStartAngleR));
 			lastStartAngleR = finishAngleR + bookBufferR;
 			debugPrintln("; new lastStartAngleD = " + toDeg(lastStartAngleR));
