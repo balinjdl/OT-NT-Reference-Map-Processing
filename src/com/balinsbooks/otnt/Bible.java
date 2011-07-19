@@ -145,7 +145,7 @@ public class Bible {
 
 	private void drawBooks() {
 		for (int i = 0; i < books.size(); i++) { // books.size()
-			debugPrintln("i: " + i);
+//			debugPrintln("i: " + i);
 
 			book = books.get(i);
 
@@ -157,7 +157,7 @@ public class Bible {
 			}
 
 			finishAngleR = lastStartAngleR + toRad(chpAngleD * books.get(i).numChapters);
-			debugPrint("finishAngleR set to " + toDeg(finishAngleR));
+//			debugPrint("finishAngleR set to " + toDeg(finishAngleR));
 			book.startR = lastStartAngleR;
 			book.endR = finishAngleR;
 
@@ -191,9 +191,9 @@ public class Bible {
 			papplet.arc(cx, cy, rInner, rInner, (float) (lastStartAngleR), (float) (finishAngleR));
 			papplet.arc(cx, cy, rOuter, rOuter, (float) (lastStartAngleR), (float) (finishAngleR));
 
-			debugPrint("; chpCount: " + books.get(i).numChapters + "; old lastStartAngle = " + toDeg(lastStartAngleR));
+//			debugPrint("; chpCount: " + books.get(i).numChapters + "; old lastStartAngle = " + toDeg(lastStartAngleR));
 			lastStartAngleR = finishAngleR + bookBufferR;
-			debugPrintln("; new lastStartAngleD = " + toDeg(lastStartAngleR));
+//			debugPrintln("; new lastStartAngleD = " + toDeg(lastStartAngleR));
 		}
 		lastStartAngleR = 0;
 		papplet.stroke(Color.GRAY.getRGB());
@@ -1235,43 +1235,43 @@ public class Bible {
 	public Point getPoint(float radius, double rad) {
 		double x, y;
 		Point pt = new Point();
-		debugPrint("getPoint(" + radius + ", " + rad + ") called...");
+//		debugPrint("getPoint(" + radius + ", " + rad + ") called...");
 		x = getX(radius, rad);
 		y = getY(radius, rad);
 		pt.setLocation(x, y);
-		debugPrintln("...getPoint returning: " + pt.getX() + ", " + pt.getY());
+//		debugPrintln("...getPoint returning: " + pt.getX() + ", " + pt.getY());
 		return (pt);
 	}
 
 	public float getXf(float radius, double rad) {
 		float ax = (float) (cx + ((radius / 2) * (Math.cos((rad)))));
-		debugPrintln("  getX(" + (radius / 2) + ", " + rad + ") = " + ax);
+//		debugPrintln("  getX(" + (radius / 2) + ", " + rad + ") = " + ax);
 		return ax;
 	}
 
 	public float getYf(float radius, double rad) {
 		float ay = (float) (cy + ((radius / 2) * (Math.sin((rad)))));
-		debugPrintln("  getY(" + (radius / 2) + ", " + rad + ") = " + ay + "; ");
+//		debugPrintln("  getY(" + (radius / 2) + ", " + rad + ") = " + ay + "; ");
 		return ay;
 	}
 
 	public double getX(float radius, double rad) {
 		double ax = (cx + ((radius / 2) * (Math.cos((rad)))));
-		debugPrintln("  getX(" + (radius / 2) + ", " + rad + ") = " + ax);
+//		debugPrintln("  getX(" + (radius / 2) + ", " + rad + ") = " + ax);
 		return ax;
 	}
 
 	public double getY(float radius, double rad) {
 		double ay = (cy + ((radius / 2) * (Math.sin((rad)))));
-		debugPrintln("  getY(" + (radius / 2) + ", " + rad + ") = " + ay + "; ");
+//		debugPrintln("  getY(" + (radius / 2) + ", " + rad + ") = " + ay + "; ");
 		return ay;
 	}
 
 	private void drawLine(Point pt1, Point pt2) {
-		debugPrintln("drawLine called; returning (float): " + (float) pt1.getX() + "," + (float) pt1.getY() + ","
-				+ (float) pt2.getX() + "," + (float) pt2.getY());
-		debugPrint("  drawLine called; returning: " + pt1.getX() + "," + pt1.getY() + "," + pt2.getX() + ","
-				+ pt2.getY());
+//		debugPrintln("drawLine called; returning (float): " + (float) pt1.getX() + "," + (float) pt1.getY() + ","
+//				+ (float) pt2.getX() + "," + (float) pt2.getY());
+//		debugPrint("  drawLine called; returning: " + pt1.getX() + "," + pt1.getY() + "," + pt2.getX() + ","
+//				+ pt2.getY());
 		papplet.line((float) pt1.getX(), (float) pt1.getY(), (float) pt2.getX(), (float) pt2.getY());
 	}
 

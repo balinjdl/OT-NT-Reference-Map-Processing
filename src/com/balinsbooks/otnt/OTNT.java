@@ -29,7 +29,7 @@ public class OTNT extends PApplet {
 		// font = createFont("Calibri", 24, true);
 		// textFont(font,36);
 
-		debug = true;
+		debug = false;
 		size(1000, 1000);
 		background(255);
 		smooth();

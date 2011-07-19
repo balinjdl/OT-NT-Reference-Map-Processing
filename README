@@ -1,10 +1,25 @@
 README for OT/NT Reference Map Processing
+=========================================
 
 Software to generate a graphic map of all references (quotations, allusions, and possible allusions) of Old Testament passages in the New Testament using Processing.
 
 [This project is based on the original (JavaScript) implementation: https://github.com/balinjdl/OT-NT-Reference-Map, but reprogrammed in Processing (http://processing.org/).]
 
-Keyboard support: [all pending]
+Installation Instructions
+=========================
+Eclipse:
+1. Download the zip file;
+2. Unzip into a new folder (e.g. "c:\code\OTNTproc\");
+3. Start Eclipse and create a new Java Project;
+4. On the first screen:
+	A. Give the project a name;
+	B. Uncheck "Use default location", then browse to where you unzipped the contents (e.g. "c:\code\OTNTproc\");
+	C. Click "Finish"
+5. Eclipse will then load the source code and compile it;
+6. Select the OTNT.java file, then click "Run">"Run As">"Java Applet" to run the application.
+
+Keyboard support [all pending]
+================
 	"+" = zoom in
 	"-" = zoom out
 	"q" = toggle quotation link visibility
@@ -15,6 +30,8 @@ Keyboard support: [all pending]
 	"r" = reset view [broken]
 	"c" = recenter [broken]
 
+Source Data
+===========
 Thanks for Carl at mb-soft.com for permission to use the data from their web page (http://mb-soft.com/believe/txh/ntot.htm) in this application. Visit their site (http://mb-soft.com/believe/indexaz.html) for more resources and information.
 
 See LICENSE for current licensing information.

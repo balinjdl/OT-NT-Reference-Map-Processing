@@ -17,7 +17,7 @@ public class FloatPoint {
 
 	public void setX(float x) {
 		if (this.x != x) {
-			System.err.println("new x for FloatPoint: " + x);
+//			System.err.println("new x for FloatPoint: " + x);
 			this.x = x;
 		}
 	}
@@ -28,7 +28,7 @@ public class FloatPoint {
 
 	public void setY(float y) {
 		if (this.y != y) {
-			System.err.println("new y for FloatPoint: " + y);
+//			System.err.println("new y for FloatPoint: " + y);
 			this.y = y;
 		}
 	}
