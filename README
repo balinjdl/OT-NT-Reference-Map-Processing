@@ -18,17 +18,21 @@ Eclipse:
 5. Eclipse will then load the source code and compile it;
 6. Select the OTNT.java file, then click "Run">"Run As">"Java Applet" to run the application.
 
-Keyboard support [all pending]
+Keyboard support
 ================
 	"+" = zoom in
 	"-" = zoom out
-	"q" = toggle quotation link visibility
-	"a" = toggle allusion link visibility
-	"p" = toggle possible allusion link visibility
-	"b" = toggle book ring/arc visibility
-	"n" = toggle inner bands visibility
-	"r" = reset view [broken]
-	"c" = recenter [broken]
+	"q" = toggle quotation link visibility [pending]
+	"a" = toggle allusion link visibility [pending]
+	"p" = toggle possible allusion link visibility [pending]
+	
+	"h" = highlight mode; mouse over book arcs for filtering and links for detail
+	"f" = freeze mode; mouse movement is no longer tracked
+	
+	"b" = toggle book ring/arc visibility [pending]
+	"n" = toggle inner bands visibility [pending]
+	"r" = reset view [pending]
+	"c" = recenter
 
 Source Data
 ===========
