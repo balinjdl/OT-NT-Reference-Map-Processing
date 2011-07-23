@@ -4,7 +4,6 @@ import java.util.Iterator;
 
 import processing.core.PApplet;
 import processing.core.PFont;
-import processing.pdf.*;
 
 public class OTNT extends PApplet {
 	private static final long serialVersionUID = 8005850003613011975L;
@@ -21,9 +20,6 @@ public class OTNT extends PApplet {
 	PFont font;
 
 	boolean record = false;
-
-	private boolean highlight = false;
-	private boolean freeze = false;
 
 	public void setup() {
 		// font = createFont("Calibri", 24, true);
@@ -61,34 +57,50 @@ public class OTNT extends PApplet {
 
 		books.draw();
 
+		if (!isFrozen()) {
+
+			if (books.highlight && (bkId = books.inBook()) >= 0) {
+				books.highlight(bkId);
+				// } else {
+				// if (!books.inArc()) {
+				// books.unhighlight();
+				// }
+			}
+
+			if (books.withinArc()) {
+				if (books.highlight) {
+					books.highlightLinks();
+				}
+			}
+		}
+
 		if (record) {
 			endRecord();
 			record = false;
 		}
 
-		if (!freeze) {
-			if (highlight && (bkId = books.inBook(mouseX, mouseY)) >= 0) {
-				books.highlight(bkId);
-			} else {
-				books.unhighlight();
-			}
-		}
-
-		fill(126);
+		fill(100);
 		textAlign(LEFT);
-//		text("mouse loc: " + mouseX + ", " + mouseY + "; inbook? " + books.getName(books.inBook(mouseX, mouseY)), 0, 30);
-		int id = books.inBook(mouseX, mouseY);
-		String name =books.getName(id); 
+		// text("mouse loc: " + mouseX + ", " + mouseY + "; inbook? " +
+		// books.getName(books.inBook(mouseX, mouseY)), 0, 30);
+		int id = books.inBook();
+		String name = books.getName(id);
+		if (books.frozen) {
+			text("Frozen", 10, 40);
+		}
+		if (books.highlight) {
+			text("Highlight mode on", 10, 60);
+		}
 		if (name.length() > 0) {
-			text(name, 10, 30);
-			text("links in/out: " + String.valueOf(books.getLinkCount(id)), 10, 60);
-		}		
+			text("In book: " + name, 10, 20);
+			text("# Links in/out: " + String.valueOf(books.getLinkCount(id)), 10, 80);
+		}
 	}
 
 	public void keyPressed() {
-		if (keyCode == PApplet.SHIFT) { // highlight on
-			highlight = false;
-		}
+		// if (keyCode == PApplet.SHIFT) { // highlight on
+		// highlight = false;
+		// }
 
 		if (key == '-') {
 			scaler -= 0.1;
@@ -114,14 +126,26 @@ public class OTNT extends PApplet {
 			books.cy = height / 2;
 		}
 		if (key == 'f') {
-			record = true;
-			freeze = !freeze;
+			// record = true;
+			freeze(!isFrozen());
+		}
+		if (key == 'h') {
+			books.highlight = !books.highlight;
 		}
 	}
 
 	public void keyReleased() {
-		if (keyCode == PApplet.SHIFT) {
-			highlight = true;
-		}
+		// if (keyCode == PApplet.SHIFT) {
+		// highlight = true;
+		// }
 	}
+
+	protected void freeze(boolean freeze) {
+		books.frozen = freeze;
+	}
+
+	public boolean isFrozen() {
+		return books.frozen;
+	}
+
 }
