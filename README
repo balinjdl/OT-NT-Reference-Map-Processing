@@ -22,9 +22,9 @@ Keyboard support
 ================
 	"+" = zoom in
 	"-" = zoom out
-	"q" = toggle quotation link visibility [pending]
-	"a" = toggle allusion link visibility [pending]
-	"p" = toggle possible allusion link visibility [pending]
+	"q" = toggle quotation link visibility [now supported!]
+	"a" = toggle allusion link visibility [now supported!]
+	"p" = toggle possible allusion link visibility [now supported!]
 	
 	"h" = highlight mode; mouse over book arcs for filtering and links for detail
 	"f" = freeze mode; mouse movement is no longer tracked
@@ -40,4 +40,4 @@ Thanks for Carl at mb-soft.com for permission to use the data from their web pag
 
 See LICENSE for current licensing information.
 
-Copyright (c) 2011, John D. Lewis
+Copyright (c) 2012, John D. Lewis
