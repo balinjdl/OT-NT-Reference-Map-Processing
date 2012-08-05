@@ -21,6 +21,10 @@ public class OTNT extends PApplet {
 
 	boolean record = false;
 
+	public static void main(String args[]) {
+		PApplet.main(new String[] { "--present", "com.balinsbooks.otnt.OTNT" });
+	}
+
 	public void setup() {
 		// font = createFont("Calibri", 24, true);
 		// textFont(font,36);
@@ -96,19 +100,19 @@ public class OTNT extends PApplet {
 			text("# Links in/out: " + String.valueOf(books.getLinkCount(id)), 10, 80);
 		}
 		if (books.showQuotationLinks) {
-			text("Showing quotations", 10,100);
+			text("Showing quotations", 10, 100);
 		} else {
-			text("NOT showing quotations", 10,100);
+			text("NOT showing quotations", 10, 100);
 		}
 		if (books.showAllusionLinks) {
-			text("Showing allusions", 10,120);
+			text("Showing allusions", 10, 120);
 		} else {
-			text("NOT showing allusions", 10,120);
+			text("NOT showing allusions", 10, 120);
 		}
 		if (books.showPossibleAllusionLinks) {
-			text("Showing possible allusions", 10,140);
+			text("Showing possible allusions", 10, 140);
 		} else {
-			text("NOT showing possible allusions", 10,140);
+			text("NOT showing possible allusions", 10, 140);
 		}
 	}
 
@@ -143,16 +147,16 @@ public class OTNT extends PApplet {
 		if (key == 'h') {
 			books.highlight = !books.highlight;
 		}
-		
-		if (key == 'p') { 
+
+		if (key == 'p') {
 			books.showPossibleAllusionLinks = !books.showPossibleAllusionLinks;
 		}
-		
-		if (key == 'a') { 
+
+		if (key == 'a') {
 			books.showAllusionLinks = !books.showAllusionLinks;
 		}
-		
-		if (key == 'q') { 
+
+		if (key == 'q') {
 			books.showQuotationLinks = !books.showQuotationLinks;
 		}
 	}
