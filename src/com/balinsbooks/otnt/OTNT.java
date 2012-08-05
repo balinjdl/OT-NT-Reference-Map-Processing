@@ -132,6 +132,18 @@ public class OTNT extends PApplet {
 		if (key == 'h') {
 			books.highlight = !books.highlight;
 		}
+		
+		if (key == 'p') { 
+			books.showPossibleAllusionLinks = !books.showPossibleAllusionLinks;
+		}
+		
+		if (key == 'a') { 
+			books.showAllusionLinks = !books.showAllusionLinks;
+		}
+		
+		if (key == 'q') { 
+			books.showQuotationLinks = !books.showQuotationLinks;
+		}
 	}
 
 	public void keyReleased() {

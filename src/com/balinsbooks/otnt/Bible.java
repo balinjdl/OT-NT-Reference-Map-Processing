@@ -48,6 +48,9 @@ public class Bible {
 
 	Point startPt, endPt;
 	float startX, endX, startY, endY, startDeg, endDeg;
+	boolean showPossibleAllusionLinks = true;
+	boolean showAllusionLinks = true;
+	boolean showQuotationLinks = true;
 
 	Bible(PApplet papplet) {
 		this.papplet = papplet;
@@ -191,12 +194,12 @@ public class Bible {
 			lastStartAngleR = finishAngleR + bookBufferR;
 			// debugPrintln("; new lastStartAngleD = " +
 			// toDeg(lastStartAngleR));
-			
+
 			papplet.pushMatrix();
 			papplet.translate(book.startOuter.getX(), book.startOuter.getY());
 			papplet.rotate((float) book.startR);
-			papplet.text(book.bookName, 0,0);
-//			papplet.text(book.bookName, book.startOuter.getX(), book.startOuter.getY());
+			papplet.text(book.bookName, 0, 0);
+			// papplet.text(book.bookName, book.startOuter.getX(), book.startOuter.getY());
 			papplet.popMatrix();
 		}
 		lastStartAngleR = 0;
@@ -1149,6 +1152,19 @@ public class Bible {
 		links.add(new Link("OTNT867", "Re", 18, "Jer", 51, "q", papplet));
 	}
 
+	private boolean checkShowLink(Link l) {
+		String type = l.getType();
+		if (type.equals("p") && showPossibleAllusionLinks) {
+			return (true);
+		} else if (type.equals("a") && showAllusionLinks) {
+			return (true);
+		} else if (type.equals("q") && showQuotationLinks) {
+			return (true);
+		} else {
+			return (false);
+		}
+	}
+
 	private void drawLinks() {
 		Iterator<Link> iter = links.iterator();
 		while (iter.hasNext()) {
@@ -1156,29 +1172,37 @@ public class Bible {
 			Link l = (Link) iter.next();
 			int srcId = getBookId(l.getSourceBook());
 			int tarId = getBookId(l.getTargetBook());
-//			Book src = books.get(srcId);
-//			Book tar = books.get(tarId);
+			// Book src = books.get(srcId);
+			// Book tar = books.get(tarId);
 			if (highlight == false) {
-				drawLink = true;
-//				drawLinkLine(l);
+				if (checkShowLink(l)) {
+					drawLink = true;
+				}
+				// drawLinkLine(l);
 			} else { // highlighting is on
 				// Static (i.e. frozen)?
 				if (frozen) { // use lastSelectedBook
 					if (lastSelectedBook == srcId || lastSelectedBook == tarId) {
-						drawLink = true;
-//						drawLinkLine(l);
+						if (checkShowLink(l)) {
+							drawLink = true;
+						}
+						// drawLinkLine(l);
 					}
 				} else { // or refreshing
 					if (withinArc()) {
 						if (srcId == lastSelectedBook || tarId == lastSelectedBook) {
 							// System.err.println("refreshing link line: " +
 							// inArc());
-							drawLink = true;
-//							drawLinkLine(l);
+							if (checkShowLink(l)) {
+								drawLink = true;
+							}
+							// drawLinkLine(l);
 						}
 					} else if (((hoverBook == -1 && !inArc()) || (srcId == hoverBook || tarId == hoverBook))) {
-						drawLink = true;
-//						drawLinkLine(l);
+						if (checkShowLink(l)) {
+							drawLink = true;
+						}
+						// drawLinkLine(l);
 					}
 				}
 			}
@@ -1215,9 +1239,8 @@ public class Bible {
 		papplet.strokeWeight(l.getWeight());
 		// papplet.line(startLinkSrcX, startLinkSrcY, startLinkTarX,
 		// startLinkTarY);
-		papplet.bezier(l.getStartPoint().getX(), l.getStartPoint().getY(), l.getMidPoint1().getX(), l.getMidPoint1()
-				.getY(), l.getMidPoint2().getX(), l.getMidPoint2().getY(), l.getEndPoint().getX(), l.getEndPoint()
-				.getY());
+		papplet.bezier(l.getStartPoint().getX(), l.getStartPoint().getY(), l.getMidPoint1().getX(), l.getMidPoint1().getY(), l.getMidPoint2().getX(), l.getMidPoint2().getY(), l
+				.getEndPoint().getX(), l.getEndPoint().getY());
 	}
 
 	private int getBookId(String name) {
@@ -1237,9 +1260,9 @@ public class Bible {
 		return (-1);
 	}
 
-//	private FloatPoint getBookStartPoint(Book b) {
-//		return (b.startInner);
-//	}
+	// private FloatPoint getBookStartPoint(Book b) {
+	// return (b.startInner);
+	// }
 
 	public void draw() {
 		papplet.noFill();
@@ -1253,9 +1276,9 @@ public class Bible {
 		return (deg * (2 * Math.PI / 360));
 	}
 
-//	private double toDeg(double rad) {
-//		return (rad * (360 / (2 * Math.PI)));
-//	}
+	// private double toDeg(double rad) {
+	// return (rad * (360 / (2 * Math.PI)));
+	// }
 
 	public Point getPoint(float radius, double rad) {
 		double x, y;
@@ -1295,17 +1318,17 @@ public class Bible {
 		return ay;
 	}
 
-//	private void debugPrintln(String msg) {
-//		if (debug) {
-//			System.err.println(msg);
-//		}
-//	}
-//
-//	private void debugPrint(String msg) {
-//		if (debug) {
-//			System.err.print(msg);
-//		}
-//	}
+	// private void debugPrintln(String msg) {
+	// if (debug) {
+	// System.err.println(msg);
+	// }
+	// }
+	//
+	// private void debugPrint(String msg) {
+	// if (debug) {
+	// System.err.print(msg);
+	// }
+	// }
 
 	public int inBook() {
 		if (!frozen) {
@@ -1405,7 +1428,7 @@ public class Bible {
 		while (iter.hasNext()) {
 			Link l = (Link) iter.next();
 			if (l.isVisible() && l.onLink(papplet, papplet.mouseX, papplet.mouseY)) {
-				papplet.text("on link: " + l.getSourceBook() + " " + l.sourceChp + " to " + l.getTargetBook() + " " + l.targetChp, 20, (float)(papplet.height-100));
+				papplet.text("on link: " + l.getSourceBook() + " " + l.sourceChp + " to " + l.getTargetBook() + " " + l.targetChp, 20, (float) (papplet.height - 100));
 				l.setWeight(HIGHLIGHT_STROKEWEIGHT);
 			} else {
 				l.setWeight(DEFAULT_STROKEWEIGHT);

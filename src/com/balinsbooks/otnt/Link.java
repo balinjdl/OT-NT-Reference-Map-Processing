@@ -156,4 +156,8 @@ public class Link {
 	public boolean isVisible() {
 		return visible;
 	}
+	
+	public String getType() {
+		return type;
+	}
 }
