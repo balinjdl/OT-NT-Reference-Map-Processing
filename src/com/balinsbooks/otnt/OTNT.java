@@ -95,13 +95,24 @@ public class OTNT extends PApplet {
 			text("In book: " + name, 10, 20);
 			text("# Links in/out: " + String.valueOf(books.getLinkCount(id)), 10, 80);
 		}
+		if (books.showQuotationLinks) {
+			text("Showing quotations", 10,100);
+		} else {
+			text("NOT showing quotations", 10,100);
+		}
+		if (books.showAllusionLinks) {
+			text("Showing allusions", 10,120);
+		} else {
+			text("NOT showing allusions", 10,120);
+		}
+		if (books.showPossibleAllusionLinks) {
+			text("Showing possible allusions", 10,140);
+		} else {
+			text("NOT showing possible allusions", 10,140);
+		}
 	}
 
 	public void keyPressed() {
-		// if (keyCode == PApplet.SHIFT) { // highlight on
-		// highlight = false;
-		// }
-
 		if (key == '-') {
 			scaler -= 0.1;
 		}
@@ -147,9 +158,6 @@ public class OTNT extends PApplet {
 	}
 
 	public void keyReleased() {
-		// if (keyCode == PApplet.SHIFT) {
-		// highlight = true;
-		// }
 	}
 
 	protected void freeze(boolean freeze) {
